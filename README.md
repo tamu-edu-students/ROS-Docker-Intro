@@ -17,5 +17,16 @@ For GUI access, use a [VNC viewer](https://github.com/TigerVNC/tigervnc/releases
 
 Other operations on the container can be found in the [Makefile](https://github.com/tamu-edu-students/ROS-Docker-Intro/blob/main/Makefile).
 
-## Trouble shoot
 
+## Play a ROS1 Bag File
+1. Download a bag file from [here](https://drive.google.com/file/d/1wd52kaQGrDC4oLVAq-fCSeIch1_wm808/view?usp=sharing) and move it to the shared folder *rootfs/*.
+
+2. In the container CLI
+    - run ```source ./noetic_setup.sh``` to initiate ROS 1 environment
+    - run ```roscore &``` and ```rviz &``` to start [RViz](http://wiki.ros.org/rviz)
+    - run ```rosbag play -r 10 --loop rootfs/16-mcity1.bag``` to play the downloaded bag file
+
+3. In the container GUI
+    - open config file ```demo.rviz``` in folder */root/rootfs/* from RViz, it should show the images and point clouds now
+
+## Trouble shoot
