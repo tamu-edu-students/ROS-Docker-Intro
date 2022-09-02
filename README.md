@@ -33,4 +33,11 @@ Other operations on the container can be found in the [Makefile](https://github.
 
 [demo-step2.webm](https://user-images.githubusercontent.com/7988312/188234599-e1dba644-739a-43e9-b676-11ac9ec3561a.webm)
 
+
+## Create Your ROS Package and Docker Image
+1. Create a workspace with ```mkdir -p /root/rootfs/demo_workspace/src``` and initialize it following the tutorials [[ROS 1](http://wiki.ros.org/catkin/Tutorials/create_a_workspace), [ROS 2](https://docs.ros.org/en/foxy/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html)]
+2. Follow the rest of tutorials to create your ROS package and ROS node [[ROS 1](http://wiki.ros.org/ROS/Tutorials), [ROS 2](https://docs.ros.org/en/foxy/Tutorials/Beginner-Client-Libraries.html)]
+3. Add the dependencies of your package to ```Dockerfile.template``` and build your image with ```docker build -f Dockerfile.template --tag=IMAGE_NAME```
+
+
 ## Trouble shoot
