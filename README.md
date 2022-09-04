@@ -17,7 +17,7 @@ For GUI access, use your broswer to visit [this page](http://127.0.0.1:6080/vnc.
 
 Other operations on the container can be found in the [Makefile](https://github.com/tamu-edu-students/ROS-Docker-Intro/blob/main/Makefile).
 
-[demo-step1.webm](https://user-images.githubusercontent.com/7988312/188234548-17f3070d-16a6-42f9-ba5a-55d44b18bcdf.webm)
+[demo-step1.webm](https://user-images.githubusercontent.com/7988312/188325273-39f55d31-c1f3-4ebc-8151-3e32039b1098.webm)
 
 
 ## Play a ROS1 Bag File
@@ -31,7 +31,7 @@ Other operations on the container can be found in the [Makefile](https://github.
 3. In the container GUI
     - open config file ```demo.rviz``` in folder */root/rootfs/* from RViz, it should show the images and point clouds now
 
-[demo-step2.webm](https://user-images.githubusercontent.com/7988312/188234599-e1dba644-739a-43e9-b676-11ac9ec3561a.webm)
+[demo-step2.webm](https://user-images.githubusercontent.com/7988312/188325293-436ab815-c94a-4973-bad0-0e6c848a67c9.webm)
 
 
 ## Create Your ROS Package and Docker Image
