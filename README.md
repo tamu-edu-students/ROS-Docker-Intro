@@ -9,11 +9,11 @@ For x64 machine, run ```make init``` will download and initalize the container w
 
 If you don't have ```make```, just copy and run [line 6 in the Makefile](https://github.com/tamu-edu-students/ROS-Docker-Intro/blob/main/Makefile#L6).
 
-For arm64 machine, run ```make build-arm64``` before running ```make init```.
+For arm64 machine, run ```make build``` before running ```make init```.
 
 A CLI to the container will be granted after this step.
 
-For GUI access, use a [VNC viewer](https://github.com/TigerVNC/tigervnc/releases/tag/v1.12.0) to connect to 127.0.0.1:5901.
+For GUI access, use your broswer to visit [this page](http://127.0.0.1:6080/vnc.html).
 
 Other operations on the container can be found in the [Makefile](https://github.com/tamu-edu-students/ROS-Docker-Intro/blob/main/Makefile).
 
@@ -37,7 +37,9 @@ Other operations on the container can be found in the [Makefile](https://github.
 ## Create Your ROS Package and Docker Image
 1. Create a workspace with ```mkdir -p /root/rootfs/demo_workspace/src``` and initialize it following the tutorials [[ROS 1](http://wiki.ros.org/catkin/Tutorials/create_a_workspace), [ROS 2](https://docs.ros.org/en/foxy/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html)]
 2. Follow the rest of tutorials to create your ROS package and ROS node [[ROS 1](http://wiki.ros.org/ROS/Tutorials), [ROS 2](https://docs.ros.org/en/foxy/Tutorials/Beginner-Client-Libraries.html)]
+
 3. Add the dependencies of your package to ```Dockerfile.template``` and build your image with ```docker build -f Dockerfile.template --tag=IMAGE_NAME```
 
 
 ## Trouble shoot
+
