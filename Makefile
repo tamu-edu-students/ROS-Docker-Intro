@@ -9,7 +9,7 @@ init:
 	#Use the following line in Linux only
 	#sudo docker run --name $(CONTAINERID_ID) -it -v `pwd`/rootfs:/root/rootfs --network host $(IMAGE_ID)
 
-#Build x64 image
+#Build image
 build:
 	sudo docker build --tag=$(IMAGE_ID) .
 

@@ -1,3 +1,4 @@
+#Checkout http://wiki.ros.org/cv_bridge/Tutorials
 import sys
 import cv2
 import rospy
