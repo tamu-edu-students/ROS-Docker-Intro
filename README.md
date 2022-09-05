@@ -47,7 +47,8 @@ Other operations on the container can be found in the [Makefile](https://github.
     In the host machine, use [CouldCompare](https://www.danielgm.net/cc/) or [Matlab](https://www.mathworks.com/help/vision/ref/pcread.html) to view the exported pointcloud file
 
 
-## Create Your ROS Package and Docker Image
+## Create Your ROS Package and Docker Image ([ROS1](https://clearpathrobotics.com/ros-robot-operating-system-cheat-sheet/) | [ROS2](https://www.theconstructsim.com/wp-content/uploads/2021/10/ROS2-Command-Cheat-Sheets-updated.pdf) | [Docker Cheat Sheets](https://dockerlux.github.io/pdf/cheat-sheet-v2.pdf))
+
 1. Create a workspace with ```mkdir -p /root/rootfs/demo_workspace/src``` and initialize it following the tutorials [[ROS 1](http://wiki.ros.org/catkin/Tutorials/create_a_workspace), [ROS 2](https://docs.ros.org/en/foxy/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html)]
 
 2. Follow the rest of tutorials to create your ROS package and ROS node [[ROS 1](http://wiki.ros.org/ROS/Tutorials), [ROS 2](https://docs.ros.org/en/foxy/Tutorials/Beginner-Client-Libraries.html)]
@@ -56,3 +57,6 @@ Other operations on the container can be found in the [Makefile](https://github.
 
 
 ## Trouble shoot
+
+1. RLException: roscore cannot run as another roscore/master is already running
+    - You only need one roscore, you can ignore this error
