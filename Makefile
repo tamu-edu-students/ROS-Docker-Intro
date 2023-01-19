@@ -3,9 +3,9 @@ CONTAINERID_ID = ADC_II-Dev
 
 #Initialize container from image
 init:
-	sudo docker run --name $(CONTAINERID_ID) -it -v `pwd`/rootfs:/root/rootfs -p 6080:6080 $(IMAGE_ID)
+	sudo docker run --name $(CONTAINERID_ID) -it -v `pwd`/rootfs:/root/rootfs -p 6080:6080 -p 8888:8888 $(IMAGE_ID)
 	#Use the following line for Matlab-ROS connection in Windows/Mac
-	#sudo docker run --name $(CONTAINERID_ID) -it -v `pwd`/rootfs:/root/rootfs -p 6080:6080 -p 11311:11311 -p 40000-40100:40000-40100 --sysctl net.ipv4.ip_local_port_range="40000 40100" $(IMAGE_ID)
+	#sudo docker run --name $(CONTAINERID_ID) -it -v `pwd`/rootfs:/root/rootfs -p 6080:6080 -p 8888:8888 -p 11311:11311 -p 40000-40100:40000-40100 --sysctl net.ipv4.ip_local_port_range="40000 40100" $(IMAGE_ID)
 	#Use the following line in Linux only
 	#sudo docker run --name $(CONTAINERID_ID) -it -v `pwd`/rootfs:/root/rootfs --network host $(IMAGE_ID)
 
@@ -14,7 +14,7 @@ build:
 	sudo docker build --tag=$(IMAGE_ID) .
 
 #Run initialized container
-run:
+start:
 	sudo docker start -ia $(CONTAINERID_ID)
 
 #Stop container
