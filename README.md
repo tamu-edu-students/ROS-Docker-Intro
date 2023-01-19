@@ -13,7 +13,7 @@ For arm64 machine, run ```make build``` before running ```make init```.
 
 A CLI to the container will be granted after this step.
 
-For GUI access, use your broswer to visit [this page](http://127.0.0.1:6080/vnc.html).
+For GUI access, use your broswer to visit [this page](http://127.0.0.1:6080/vnc.html) with password.
 
 Other operations on the container can be found in the [Makefile](https://github.com/tamu-edu-students/ROS-Docker-Intro/blob/main/Makefile).
 
@@ -22,7 +22,7 @@ Other operations on the container can be found in the [Makefile](https://github.
 1. Download a bag file from [here](https://drive.google.com/file/d/1wd52kaQGrDC4oLVAq-fCSeIch1_wm808/view?usp=sharing) and move it to the shared folder *rootfs/*. Learn more about ROS bag [here](http://wiki.ros.org/Bags).
 
 2. In the container CLI
-    - run ```source ./noetic_setup.sh``` to initiate ROS 1 environment
+    - run ```source /root/rootfs/noetic_setup.sh``` to initiate ROS 1 environment
     - run ```roscore &``` and ```rviz &``` to start [RViz](http://wiki.ros.org/rviz)
     - run ```rosbag play -r 10 --loop rootfs/16-mcity1.bag``` to play the downloaded bag file
 
@@ -34,8 +34,8 @@ Other operations on the container can be found in the [Makefile](https://github.
 1. Image ROS Node ([view code](https://github.com/tamu-edu-students/ROS-Docker-Intro/blob/main/rootfs/image_subscriber.py) | [demo video](https://user-images.githubusercontent.com/7988312/188329604-5234085e-3450-4567-9694-aba2ae52efd4.webm))
 
     In the container GUI, open mutiple terminals
-    - run ```source ./noetic_setup.sh; (roscore &); rosbag play -r 10 --loop rootfs/16-mcity1.bag``` in terminal 1
-    - run ```source ./noetic_setup.sh; (rqt_image_view &); python3 /root/rootfs/image_subscriber.py``` in terminal 2
+    - run ```source /root/rootfs/noetic_setup.sh; (roscore &); rosbag play -r 10 --loop rootfs/16-mcity1.bag``` in terminal 1
+    - run ```source /root/rootfs/noetic_setup.sh; (rqt_image_view &); python3 /root/rootfs/image_subscriber.py``` in terminal 2
     - select image topic ```/front_camera/image_raw``` and ```/img_gray``` to see the original image and the gray image produced by the ROS node.
 
 2. PointCloud ROS Node ([view code](https://github.com/tamu-edu-students/ROS-Docker-Intro/blob/main/rootfs/point_cloud_subscriber.py) | [demo video](https://user-images.githubusercontent.com/7988312/188329621-7769981c-05a8-45b2-835f-7a9e910b3f72.webm))
