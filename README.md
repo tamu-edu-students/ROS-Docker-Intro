@@ -22,26 +22,26 @@ Other operations on the container can be found in the [Makefile](https://github.
 1. Download a bag file from [here](https://drive.google.com/file/d/1wd52kaQGrDC4oLVAq-fCSeIch1_wm808/view?usp=sharing) and move it to the shared folder *rootfs/*. Learn more about ROS bag [here](http://wiki.ros.org/Bags).
 
 2. In the container CLI
-    - run ```source /root/rootfs/noetic_setup.sh``` to initiate ROS 1 environment
-    - run ```roscore &``` and ```rviz &``` to start [RViz](http://wiki.ros.org/rviz)
-    - run ```rosbag play -r 10 --loop rootfs/16-mcity1.bag``` to play the downloaded bag file
+    - run ```source /root/rootfs/foxy_setup.sh``` to initiate ROS 2 environment
+    - run ```rviz2 &``` to start [RViz](http://wiki.ros.org/rviz)
+    - run ```ros2 bag play -r 10 -s rosbag_v2 --loop rootfs/16-mcity1.bag``` to play the downloaded bag file
 
 3. In the container GUI
-    - open config file ```demo.rviz``` in folder */root/rootfs/* from RViz, it should show the images and point clouds now
+    - open config file ```demo-ROS2.rviz``` in folder */root/rootfs/* from RViz, it should show the images and point clouds now
 
 
-## Try Some ROS1 Nodes
-1. Image ROS Node ([view code](https://github.com/tamu-edu-students/ROS-Docker-Intro/blob/main/rootfs/image_subscriber.py) | [demo video](https://user-images.githubusercontent.com/7988312/188329604-5234085e-3450-4567-9694-aba2ae52efd4.webm))
+## Try Some ROS2 Nodes
+1. Image ROS Node ([view code](https://github.com/tamu-edu-students/ROS-Docker-Intro/blob/ROS2/rootfs/image_subscriber-ros2.py) | [demo video](https://user-images.githubusercontent.com/7988312/188329604-5234085e-3450-4567-9694-aba2ae52efd4.webm))
 
     In the container GUI, open mutiple terminals
-    - run ```source /root/rootfs/noetic_setup.sh; (roscore &); rosbag play -r 10 --loop rootfs/16-mcity1.bag``` in terminal 1
-    - run ```source /root/rootfs/noetic_setup.sh; (rqt_image_view &); python3 /root/rootfs/image_subscriber.py``` in terminal 2
+    - run ```source /root/rootfs/foxy_setup.sh; ros2 bag play -r 10 -s rosbag_v2 --loop rootfs/16-mcity1.bag``` in terminal 1
+    - run ```source /root/rootfs/foxy_setup.sh; (ros2 run rqt_image_view rqt_image_view &); python3 /root/rootfs/image_subscriber-ros2.py``` in terminal 2
     - select image topic ```/front_camera/image_raw``` and ```/img_gray``` to see the original image and the gray image produced by the ROS node.
 
-2. PointCloud ROS Node ([view code](https://github.com/tamu-edu-students/ROS-Docker-Intro/blob/main/rootfs/point_cloud_subscriber.py) | [demo video](https://user-images.githubusercontent.com/7988312/188329621-7769981c-05a8-45b2-835f-7a9e910b3f72.webm))
+2. PointCloud ROS Node ([view code](https://github.com/tamu-edu-students/ROS-Docker-Intro/blob/ROS2/rootfs/point_cloud_subscriber-ros2.py) | [demo video](https://user-images.githubusercontent.com/7988312/188329621-7769981c-05a8-45b2-835f-7a9e910b3f72.webm))
 
     In the container GUI,
-    - run ```apt install -y python3-pcl; python3 /root/rootfs/point_cloud_subscriber.py``` in terminal 2
+    - run ```apt install -y python3-pcl ros-foxy-sensor-msgs-py; python3 /root/rootfs/point_cloud_subscriber-ros2.py``` in terminal 2
     - pointcloud file will be exported to shared folder *rootfs/* by the ROS node
 
     In the host machine, use [CouldCompare](https://www.danielgm.net/cc/) or [Matlab](https://www.mathworks.com/help/vision/ref/pcread.html) to view the exported pointcloud file
@@ -58,5 +58,7 @@ Other operations on the container can be found in the [Makefile](https://github.
 
 ## Trouble shoot
 
-1. RLException: roscore cannot run as another roscore/master is already running
-    - You only need one roscore, you can ignore this error
+1. No topic showes up in ```rqt_image_view```
+    - Try to run ```ros2 topic list``` before running ```rqt_image_view```
+2. Copy and paste to/from noVNC is annoying
+    - Add ```-localhost no``` the second line of ```/root/startVNC.sh```, restart docker and connect to DOCKER_IP:5901 with an [VNC client](https://www.realvnc.com/en/connect/download/viewer/). Use ```ifconfig``` to show DOCKER_IP (CAUTION! This will expose your docker VNC to public IP instead of localhost)
