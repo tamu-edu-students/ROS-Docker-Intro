@@ -46,6 +46,12 @@ Other operations on the container can be found in the [Makefile](https://github.
 
     In the host machine, use [CouldCompare](https://www.danielgm.net/cc/) or [Matlab](https://www.mathworks.com/help/vision/ref/pcread.html) to view the exported pointcloud file
 
+2. GPS ROS Node ([view code](https://github.com/tamu-edu-students/ROS-Docker-Intro/blob/ROS2/rootfs/gps_subscriber-ros2.py))
+
+    In the container GUI,
+    - run ```pip install utm; python3 /root/rootfs/gps_subscriber-ros2.py``` in terminal 2
+    - the ROS node will print the gps coordinates
+
 
 ## Create Your ROS Package and Docker Image ([ROS1](https://clearpathrobotics.com/ros-robot-operating-system-cheat-sheet/) | [ROS2](https://www.theconstructsim.com/wp-content/uploads/2021/10/ROS2-Command-Cheat-Sheets-updated.pdf) | [Docker Cheat Sheets](https://dockerlux.github.io/pdf/cheat-sheet-v2.pdf))
 
@@ -60,5 +66,8 @@ Other operations on the container can be found in the [Makefile](https://github.
 
 1. No topic showes up in ```rqt_image_view```
     - Try to run ```ros2 topic list``` before running ```rqt_image_view```
-2. Copy and paste to/from noVNC is annoying
-    - Add ```-localhost no``` the second line of ```/root/startVNC.sh```, restart docker and connect to DOCKER_IP:5901 with an [VNC client](https://www.realvnc.com/en/connect/download/viewer/). Use ```ifconfig``` to show DOCKER_IP (CAUTION! This will expose your docker VNC to public IP instead of localhost)
+2. How to skip the ```source /root/rootfs/foxy_setup.sh``` step
+    - Add ```source /root/rootfs/foxy_setup.sh``` to the end of ```/root/.bashrc```, restart the terminal
+3. Copy and paste to/from noVNC is annoying
+    - Add ```-localhost no``` the end of the second line in ```/root/startVNC.sh```, restart docker and use ```ifconfig``` to show DOCKER_IP, then connect to DOCKER_IP:5901 with an [VNC client](https://www.realvnc.com/en/connect/download/viewer/) (CAUTION! This will expose your docker VNC to public IP instead of localhost)
+
