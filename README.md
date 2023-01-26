@@ -70,10 +70,12 @@ Other operations on the container can be found in the [Makefile](https://github.
     - Try to run ```ros2 topic list``` before running ```rqt_image_view```
 2. Docker does not work on my computer
     - You can use a VM/WSL as an alternative, follow the setup in [the Dockerfile](https://github.com/tamu-edu-students/ROS-Docker-Intro/blob/ROS2/Dockerfile) (install fresh Ubuntu 20.04 and all the dependencies)
-3. ```make init``` / [line 6 in the Makefile](https://github.com/tamu-edu-students/ROS-Docker-Intro/blob/ROS2/Makefile#L6) does not work
+3. ```make init``` or [line 6 in the Makefile](https://github.com/tamu-edu-students/ROS-Docker-Intro/blob/ROS2/Makefile#L6) does not work
     - Replace ``` `pwd` ``` with the absolute path of this tutorial folder
-4. How to skip the ```source /root/rootfs/foxy_setup.sh``` step
+4. ```ros2: command not found``` or ```No module named 'rclpy'```
+    - run ```source /root/rootfs/foxy_setup.sh``` in your terminal and try again
+5. How to skip the ```source /root/rootfs/foxy_setup.sh``` step
     - Add ```source /root/rootfs/foxy_setup.sh``` to the end of ```/root/.bashrc```, restart the terminal
-5. Copy and paste to/from noVNC is annoying
+6. Copy and paste to/from noVNC is annoying
     - Add ```-localhost no``` the end of the second line in ```/root/startVNC.sh```, restart docker and use ```ifconfig``` to show DOCKER_IP, then connect to DOCKER_IP:5901 with an [VNC client](https://www.realvnc.com/en/connect/download/viewer/) (CAUTION! This will expose your docker VNC to public IP instead of localhost)
 
