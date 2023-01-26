@@ -74,8 +74,10 @@ Other operations on the container can be found in the [Makefile](https://github.
     - Replace ``` `pwd` ``` with the absolute path of this tutorial folder
 4. ```ros2: command not found``` or ```No module named 'rclpy'```
     - run ```source /root/rootfs/foxy_setup.sh``` in your terminal and try again
-5. How to skip the ```source /root/rootfs/foxy_setup.sh``` step
+5. Get ```Aborted (core dumped)``` when running ```rviz2```
+    - Restart your docker (exit container then ```make start```) and try again, DO NOT source ```noetic_setup.sh``` after sourcing ```foxy_setup.sh```
+6. How to skip the ```source /root/rootfs/foxy_setup.sh``` step
     - Add ```source /root/rootfs/foxy_setup.sh``` to the end of ```/root/.bashrc```, restart the terminal
-6. Copy and paste to/from noVNC is annoying
+7. Copy and paste to/from noVNC is annoying
     - Add ```-localhost no``` the end of the second line in ```/root/startVNC.sh```, restart docker and use ```ifconfig``` to show DOCKER_IP, then connect to DOCKER_IP:5901 with an [VNC client](https://www.realvnc.com/en/connect/download/viewer/) (CAUTION! This will expose your docker VNC to public IP instead of localhost)
 
