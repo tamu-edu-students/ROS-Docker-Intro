@@ -5,6 +5,8 @@ Any machine with [Docker](https://docs.docker.com/get-docker/) installed. Learn 
 
 
 ## Setup ROS in Docker ([demo video](https://user-images.githubusercontent.com/7988312/188325273-39f55d31-c1f3-4ebc-8151-3e32039b1098.webm))
+Open a Terminal/Powershell
+
 For x64 machine, run ```make init``` will download and initalize the container with [ROS Foxy/Noetic](https://docs.ros.org/).
 
 If you don't have ```make```, just copy and run [line 6 in the Makefile](https://github.com/tamu-edu-students/ROS-Docker-Intro/blob/ROS2/Makefile#L6).
@@ -13,12 +15,12 @@ For arm64 machine, run ```make build``` before running ```make init```.
 
 A CLI to the container will be granted after this step.
 
-For GUI access, use your broswer to visit [this page](http://127.0.0.1:6080/vnc.html) with password.
+For GUI access, use your broswer to visit [this page](http://127.0.0.1:6080/vnc.html) with [*password*].
 
 Other operations on the container can be found in the [Makefile](https://github.com/tamu-edu-students/ROS-Docker-Intro/blob/ROS2/Makefile).
 
 
-## Play a ROS1 Bag File ([demo video](https://user-images.githubusercontent.com/7988312/188325293-436ab815-c94a-4973-bad0-0e6c848a67c9.webm))
+## Play a ROS1 Bag File ([demo video](https://user-images.githubusercontent.com/7988312/214894356-eb3c2a65-6a5b-4ae3-8e93-2ac607f19671.webm))
 1. Download a bag file from [here](https://drive.google.com/file/d/1wd52kaQGrDC4oLVAq-fCSeIch1_wm808/view?usp=sharing) and move it to the shared folder *rootfs/*. Learn more about ROS bag [here](http://wiki.ros.org/Bags).
 
 2. In the container CLI
@@ -67,9 +69,11 @@ Other operations on the container can be found in the [Makefile](https://github.
 1. No topic showes up in ```rqt_image_view```
     - Try to run ```ros2 topic list``` before running ```rqt_image_view```
 2. Docker does not work on my computer
-    - You can use a VM as an alternative, follow the setup in [the Dockerfile](https://github.com/tamu-edu-students/ROS-Docker-Intro/blob/ROS2/Dockerfile) (install fresh Ubuntu 20.04 and all the dependencies)
-3. How to skip the ```source /root/rootfs/foxy_setup.sh``` step
+    - You can use a VM/WSL as an alternative, follow the setup in [the Dockerfile](https://github.com/tamu-edu-students/ROS-Docker-Intro/blob/ROS2/Dockerfile) (install fresh Ubuntu 20.04 and all the dependencies)
+3. ```make init``` / [line 6 in the Makefile](https://github.com/tamu-edu-students/ROS-Docker-Intro/blob/ROS2/Makefile#L6) does not work
+    - Replace ``` `pwd` ``` with the absolute path of this tutorial folder
+4. How to skip the ```source /root/rootfs/foxy_setup.sh``` step
     - Add ```source /root/rootfs/foxy_setup.sh``` to the end of ```/root/.bashrc```, restart the terminal
-4. Copy and paste to/from noVNC is annoying
+5. Copy and paste to/from noVNC is annoying
     - Add ```-localhost no``` the end of the second line in ```/root/startVNC.sh```, restart docker and use ```ifconfig``` to show DOCKER_IP, then connect to DOCKER_IP:5901 with an [VNC client](https://www.realvnc.com/en/connect/download/viewer/) (CAUTION! This will expose your docker VNC to public IP instead of localhost)
 
