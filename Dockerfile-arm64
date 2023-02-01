@@ -1,0 +1,19 @@
+FROM arm64v8/ubuntu:20.04
+WORKDIR /root
+ENTRYPOINT ["/bin/bash","/root/startVNC.sh"]
+
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y curl gnupg2 lsb-release sudo && \
+    curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg && \
+    /bin/bash -c "echo 'deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -sc) main' | tee /etc/apt/sources.list.d/ros2.list > /dev/null" && \
+    /bin/bash -c "echo 'deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main' | tee /etc/apt/sources.list.d/ros.list > /dev/null" && \
+    apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get -y install vim tmux git qt5-default ros-foxy-desktop ros-noetic-desktop-full ros-foxy-rosbag2-bag-v2-plugins novnc openbox lxpanel libfontenc-dev libxfont-dev libxxf86dga1 x11-utils && \
+    apt-get clean
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install tigervnc-common
+RUN echo "export DISPLAY=:1" >> .bashrc && \
+    /bin/bash -c "echo -e 'password\npassword\nn' | vncpasswd" && \
+    openssl req -x509 -nodes -newkey rsa:3072 -keyout novnc.pem -out novnc.pem -days 3650 -subj "/C=NA/ST=NA/L=NA/O=NA/OU=NA/CN=NA/emailAddress=NA" && \
+    curl https://phoenixnap.dl.sourceforge.net/project/tigervnc/stable/1.12.0/ubuntu-20.04LTS/arm64/tigervncserver_1.12.0-1ubuntu1_arm64.deb --output tigervncserver_1.12.0-1ubuntu1_arm64.deb && \
+    dpkg -i --force-all ./tigervncserver_1.12.0-1ubuntu1_arm64.deb && \
+    printf "rm -rf /tmp/.X1* \n/usr/bin/Xtigervnc :1 -auth /root/.Xauthority -geometry 1900x1200 -depth 24 -rfbauth /root/.vnc/passwd -rfbport 5901 -pn -localhost -SecurityTypes VncAuth & \nsleep 3 \nexport DISPLAY=:1 \nlxpanel & \nopenbox-session & \n websockify --web=/usr/share/novnc/ -D --cert=novnc.pem 6080 127.0.0.1:5901 \n /bin/bash" > startVNC.sh

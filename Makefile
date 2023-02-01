@@ -13,6 +13,17 @@ init:
 build:
 	sudo docker build --tag=$(IMAGE_ID) .
 
+init-arm:
+	sudo docker run --name $(CONTAINERID_ID) -it -v `pwd`/rootfs:/root/rootfs -p 5901:5901 -p 6080:6080 -p 8888:8888 $(IMAGE_ID):arm64
+
+#Build image for ARM64
+build-arm:
+	sudo docker build -f Dockerfile-arm64 --tag=$(IMAGE_ID):arm64 .
+
+#Cross build for ARM64
+cross-build:
+	sudo docker buildx build --platform linux/arm64 -f Dockerfile-arm64 --tag=$(IMAGE_ID):arm64 .
+
 #Run initialized container
 start:
 	sudo docker start -ia $(CONTAINERID_ID)

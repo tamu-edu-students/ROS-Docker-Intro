@@ -11,7 +11,7 @@ For x64 machine, run ```make init``` will download and initalize the container w
 
 If you don't have ```make```, just copy and run [line 6 in the Makefile](https://github.com/tamu-edu-students/ROS-Docker-Intro/blob/ROS2/Makefile#L6).
 
-For arm64 machine, run ```make build``` before running ```make init```.
+For arm64 machine, run ```make init-arm```.
 
 A CLI to the container will be granted after this step.
 
